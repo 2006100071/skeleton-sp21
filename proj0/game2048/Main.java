@@ -48,6 +48,7 @@ public class Main {
 
         try {
             while (game.playing()) {
+                System.out.println("start");
                 game.playGame();
             }
         } catch (IllegalStateException excp) {

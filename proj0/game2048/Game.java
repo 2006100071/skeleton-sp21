@@ -26,7 +26,9 @@ public class Game {
         _model.clear();
         _model.addTile(getValidNewTile());
         while (_playing) {
+
             if (!_model.gameOver()) {
+                System.out.println(_playing);
                 _model.addTile(getValidNewTile());
                 _model.notifyObservers();
             }
@@ -35,7 +37,9 @@ public class Game {
             moved = false;
             while (!moved) {
                 String cmnd = _source.getKey();
+//                System.out.println(cmnd);
                 switch (cmnd) {
+
                     case "Quit":
                         _playing = false;
                         return;
@@ -79,6 +83,7 @@ public class Game {
     private Tile getValidNewTile() {
         while (true) {
             Tile tile = _source.getNewTile(_model.size());
+            System.out.println(tile.value());
             if (_model.tile(tile.col(), tile.row()) == null) {
                 return tile;
             }

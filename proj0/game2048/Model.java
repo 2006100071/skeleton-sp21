@@ -189,7 +189,7 @@ public class Model extends Observable {
 
 //        score += board.tile(3,2).value();
         board.setViewingPerspective(Side.NORTH);
-
+//        changed = true;
         checkGameOver();
         if (changed) {
             setChanged();
