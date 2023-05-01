@@ -21,7 +21,7 @@ public class ArrayDeque<Item> {
         Item []p = (Item[]) new  Object[capacity];
         int tfirst = first;
         for (int i = 1; i <= size; i++) {
-            p[i] = items[++tfirst];
+            p[i] = items[(++tfirst) % items.length];
         }
         first = 0;
         end = size + 1;
