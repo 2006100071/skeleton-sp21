@@ -80,6 +80,7 @@ public class ArrayDeque<Item> {
 
     public Item removeFirst()
     {
+        if (size == 0)return  null;
         first = (first + 1) % items.length;
         Item x = items[first];
         size--;
@@ -92,6 +93,7 @@ public class ArrayDeque<Item> {
 
     public Item removeLast()
     {
+        if (size == 0)return  null;
         end = (end - 1 + items.length) % items.length;
         Item x = items[end];
         size--;
