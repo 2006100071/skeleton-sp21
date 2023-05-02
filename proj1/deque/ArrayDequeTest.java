@@ -131,24 +131,34 @@ public class ArrayDequeTest {
         System.out.println("Make sure to uncomment the lines below (and delete this print statement).");
 
         ArrayDeque<Integer> lld1 = new ArrayDeque<Integer>();
+        ArrayDeque<Integer> lld2 = new ArrayDeque<Integer>();
         for (int i = 0; i < 1000000; i++) {
             lld1.addLast(i);
+            lld2.addLast(i);
         }
-        Iterator<Integer>a = lld1.iterator();
-        int i1 = 0;
-        while (a.hasNext() && i1 < 100)
-        {
-            System.out.println(a.next());
-            i1++;
-        }
+//        lld1.printDeque();
+//        lld2.printDeque();
+//        Iterator<Integer>a = lld1.iterator();
+//        int i1 = 0;
+//        while (a.hasNext() && i1 < 100)
+//        {
+//            System.out.println(a.next());
+//            i1++;
+//        }
+        boolean x = lld1.equals(lld2);
+        assertTrue(x);
+        assertTrue(lld2.equals(lld1));
         for (double i = 0; i < 500000; i++) {
             assertEquals("Should have the same value", i, (double) lld1.removeFirst(), 0.0);
+            assertEquals("Should have the same value", i, (double) lld2.removeFirst(), 0.0);
+            assertTrue(lld1.equals(lld2));
+//            assertTrue(lld2.equals(lld1));
         }
 
         for (double i = 999999; i > 500000; i--) {
             assertEquals("Should have the same value", i, (double) lld1.removeLast(), 0.0);
         }
 
-        lld1.printDeque();
+//        lld1.printDeque();
     }
 }
