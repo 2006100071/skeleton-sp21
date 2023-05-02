@@ -1,8 +1,5 @@
 package deque;
 
-import net.sf.saxon.om.Item;
-
-import java.time.Instant;
 import java.util.Iterator;
 
 public class ArrayDeque<T> implements Deque<T> {
@@ -43,7 +40,7 @@ public class ArrayDeque<T> implements Deque<T> {
             resize(items.length * 2);
         }
         items[first] = item;
-        first = (first - 1 + items.length) % items.length ;
+        first = (first - 1 + items.length) % items.length;
         size++;
     }
 
@@ -56,7 +53,7 @@ public class ArrayDeque<T> implements Deque<T> {
             resize(items.length * 2);
         }
         items[end] = item;
-        end = (end + 1 ) % items.length ;
+        end = (end + 1) % items.length;
         size++;
     }
 
@@ -94,7 +91,9 @@ public class ArrayDeque<T> implements Deque<T> {
 
     @Override
     public T removeLast() {
-        if (size == 0)return  null;
+        if (size == 0){
+            return null;
+        }
         end = (end - 1 + items.length) % items.length;
         T x = items[end];
         size--;
@@ -132,16 +131,16 @@ public class ArrayDeque<T> implements Deque<T> {
     }
 
     public boolean equals(Object o) {
-        if (o == null) {
-            return  false;
+        if(o == null) {
+            return false;
         }
-        if (o == this){
-            return  true;
+        if(o == this){
+            return true;
         }
         if(!(o instanceof ArrayDeque)) {
-            return  false;
+            return false;
         }
-        ArrayDeque<T>p = (ArrayDeque<T>)o;
+        ArrayDeque<T> p = (ArrayDeque<T>)o;
         if (p.size() != size) {
             return  false;
         }

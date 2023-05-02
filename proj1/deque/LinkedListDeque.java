@@ -3,14 +3,14 @@ package deque;
 import java.util.Iterator;
 import java.util.concurrent.RecursiveAction;
 
-public class LinkedListDeque<T> implements  Deque<T>{
+public class LinkedListDeque<T> implements Deque<T> {
 
-    private  class IntNode{
-        public  T value;
-        public  IntNode pre;
-        public  IntNode next;
+    private class IntNode {
+        private T value;
+        private IntNode pre;
+        private IntNode next;
 
-        public  IntNode(T i, IntNode m, IntNode n) {
+        private IntNode(T i, IntNode m, IntNode n) {
             value = i;
             pre = m;
             next = n;
@@ -24,15 +24,15 @@ public class LinkedListDeque<T> implements  Deque<T>{
 
     /** Creates an empty LinkedListDeque. */
     public  LinkedListDeque() {
-        sentinel = new IntNode(null,null,null);
+        sentinel = new IntNode(null, null, null);
         sentinel.pre = sentinel;
         sentinel.next = sentinel;
         size = 0;
     }
 
     public  LinkedListDeque(T x) {
-        sentinel = new IntNode(null,null,null);
-        sentinel.next = new IntNode(x,sentinel,null);
+        sentinel = new IntNode(null, null, null);
+        sentinel.next = new IntNode(x,sentinel, null);
         sentinel.next.next = sentinel;
         sentinel.pre = sentinel.next;
         size = 1;
@@ -41,13 +41,13 @@ public class LinkedListDeque<T> implements  Deque<T>{
 
     /** Adds x to the front of the list. */
     public  void  addFirst(T x) {
-        sentinel.next = new IntNode(x,sentinel,sentinel.next);
+        sentinel.next = new IntNode(x, sentinel, sentinel.next);
         sentinel.next.next.pre = sentinel.next;
         size += 1;
     }
 
     public void  addLast(T x) {
-        sentinel.pre = new IntNode(x,sentinel.pre,sentinel);
+        sentinel.pre = new IntNode(x, sentinel.pre, sentinel);
         sentinel.pre.pre.next = sentinel.pre;
         size += 1;
     }
@@ -90,12 +90,11 @@ public class LinkedListDeque<T> implements  Deque<T>{
         IntNode p = sentinel.pre;
         p.pre.next = p.next;
         p.next.pre = p.pre;
-        size --;
+        size--;
         return  p.value;
     }
 
-    public T get(int index)
-    {
+    public T get(int index) {
         if (index < 0 || index > size) {
             return null;
         }
@@ -109,22 +108,20 @@ public class LinkedListDeque<T> implements  Deque<T>{
         return  null;
     }
 
-    public T Recursive(int index, int count, IntNode p)
-    {
+    public T recursive(int index, int count, IntNode p) {
         if (index == count) {
             return p.value;
         }
         else {
-            return Recursive(index, count + 1, p.next);
+            return recursive(index, count + 1, p.next);
         }
     }
-    public T getRecursive(int index)
-    {
+    public T getRecursive(int index) {
         if (index < 0 || index >= size) {
             return null;
         }
         IntNode p = sentinel.next;
-        return Recursive(index,0,p);
+        return recursive(index,0, p);
     }
 
     public Iterator<T> iterator()
@@ -153,11 +150,11 @@ public class LinkedListDeque<T> implements  Deque<T>{
         if (o == this) {
             return true;
         }
-        if (!(o instanceof LinkedListDeque)){
+        if (!(o instanceof LinkedListDeque)) {
             return  false;
         }
         LinkedListDeque<T> p = (LinkedListDeque<T>)o;
-        if (p.size() != size){
+        if (p.size() != size) {
             return  false;
         }
 
