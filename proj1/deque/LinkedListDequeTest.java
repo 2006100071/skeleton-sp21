@@ -20,10 +20,12 @@ public class LinkedListDequeTest {
         System.out.println("Make sure to uncomment the lines below (and delete this print statement).");
 
         LinkedListDeque<String> lld1 = new LinkedListDeque<String>();
-        LinkedListDeque<String> lld2 = new LinkedListDeque<String>();
+        ArrayDeque<String> lld2 = new ArrayDeque<>();
 		assertTrue("A newly initialized LLDeque should be empty", lld1.isEmpty());
 		lld1.addFirst("front");
         lld2.addFirst("front");
+        lld1.equals(lld2);
+
 		// The && operator is the same as "and" in Python.
 		// It's a binary operator that returns true if both arguments true, and false otherwise.
         assertEquals(1, lld1.size());
