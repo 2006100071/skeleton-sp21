@@ -1,9 +1,9 @@
 package deque;
 
 import java.util.Iterator;
-import java.util.concurrent.RecursiveAction;
 
-public class LinkedListDeque<T> implements Deque<T> {
+
+public class LinkedListDeque<T> implements Deque<T>,  Iterable<T> {
 
     private class IntNode {
         private T value;
@@ -30,13 +30,13 @@ public class LinkedListDeque<T> implements Deque<T> {
         size = 0;
     }
 
-    public  LinkedListDeque(T x) {
-        sentinel = new IntNode(null, null, null);
-        sentinel.next = new IntNode(x,sentinel, null);
-        sentinel.next.next = sentinel;
-        sentinel.pre = sentinel.next;
-        size = 1;
-    }
+//    public  LinkedListDeque(T x) {
+//        sentinel = new IntNode(null, null, null);
+//        sentinel.next = new IntNode(x,sentinel, null);
+//        sentinel.next.next = sentinel;
+//        sentinel.pre = sentinel.next;
+//        size = 1;
+//    }
 
 
     /** Adds x to the front of the list. */
@@ -108,24 +108,23 @@ public class LinkedListDeque<T> implements Deque<T> {
         return  null;
     }
 
-    public T recursive(int index, int count, IntNode p) {
+    private T recursive(int index, int count, IntNode p) {
         if (index == count) {
             return p.value;
-        }
-        else {
+        } else {
             return recursive(index, count + 1, p.next);
         }
+
     }
     public T getRecursive(int index) {
         if (index < 0 || index >= size) {
             return null;
         }
         IntNode p = sentinel.next;
-        return recursive(index,0, p);
+        return recursive(index, 0, p);
     }
 
-    public Iterator<T> iterator()
-    {
+    public Iterator<T> iterator() {
         Iterator<T> p = new Iterator<T>() {
             private int index = 0;
             @Override
@@ -153,7 +152,7 @@ public class LinkedListDeque<T> implements Deque<T> {
         if (!(o instanceof LinkedListDeque)) {
             return  false;
         }
-        LinkedListDeque<T> p = (LinkedListDeque<T>)o;
+        LinkedListDeque<T> p = (LinkedListDeque<T>) o;
         if (p.size() != size) {
             return  false;
         }

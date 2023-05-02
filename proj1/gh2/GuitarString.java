@@ -1,9 +1,9 @@
 package gh2;
 
 
- import deque.ArrayDeque;
- import deque.Deque;
- import edu.princeton.cs.algs4.StdAudio;
+import deque.ArrayDeque;
+import deque.Deque;
+
 
 
 //Note: This file will not compile until you complete the Deque implementations
@@ -16,7 +16,7 @@ public class GuitarString {
 
     /* Buffer for storing sound data. */
 
-     private Deque<Double> buffer;
+    private Deque<Double> buffer;
 
     /* Create a guitar string of the given frequency.  */
     public GuitarString(double frequency) {
@@ -25,7 +25,7 @@ public class GuitarString {
         //       better accuracy, use the Math.round() function before casting.
         //       Your should initially fill your buffer array with zeros.
         buffer = new ArrayDeque<Double>();
-        int capacity = (int)Math.round(SR / frequency);
+        int capacity = (int) Math.round(SR / frequency);
         for (int i = 0; i < capacity; i++) {
             buffer.addFirst(0.0);
         }
@@ -54,13 +54,11 @@ public class GuitarString {
      * the Karplus-Strong algorithm.
      */
     public void tic() {
-
+        double x = buffer.removeFirst();
+        double y = (x + buffer.get(0)) / 2 * DECAY;
+        buffer.addLast(y);
         //       the average of the two multiplied by the DECAY factor.
         //       **Do not call StdAudio.play().**
-            double x = buffer.removeFirst();
-            double y = (x + buffer.get(0)) / 2 * DECAY;
-            buffer.addLast(y);
-
     }
 
     /* Return the double at the front of the buffer. */
