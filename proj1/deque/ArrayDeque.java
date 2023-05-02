@@ -69,7 +69,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
 
 
     public void printDeque() {
-        for (int i = (first + 1) % items.length; i <= size; i = (i + 1) % items.length) {
+        for (int i = (first + 1) % items.length; i < end; i = (i + 1) % items.length) {
             System.out.print(items[i] + " ");
         }
         System.out.println();
@@ -137,25 +137,26 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T> {
         if (o == this) {
             return true;
         }
-        if (!(o instanceof ArrayDeque)) {
-            if ((o instanceof LinkedListDeque)) {
-                LinkedListDeque<T> p = (LinkedListDeque<T>) o;
-                if (p.size() != size) {
-                    return false;
-                }
-
-                for (int i = 0; i < size; i++) {
-                    T x = p.get(i);
-                    T y = get(i);
-                    if (!x.equals(y)) {
-                        return false;
-                    }
-                }
-                return true;
-            }
-            return false;
-        }
-        ArrayDeque<T> p = (ArrayDeque<T>) o;
+//        if (!(o instanceof ArrayDeque)) {
+//            if ((o instanceof LinkedListDeque)) {
+//                LinkedListDeque<T> p = (LinkedListDeque<T>) o;
+//                if (p.size() != size) {
+//                    return false;
+//                }
+//
+//                for (int i = 0; i < size; i++) {
+//                    T x = p.get(i);
+//                    T y = get(i);
+//                    if (!x.equals(y)) {
+//                        return false;
+//                    }
+//                }
+//                return true;
+//            }
+//            return false;
+//        }
+//        ArrayDeque<T> p = (ArrayDeque<T>) o;
+        Deque<T> p = (Deque<T>) o;
         if (p.size() != size) {
             return  false;
         }
