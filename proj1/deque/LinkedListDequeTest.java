@@ -1,6 +1,9 @@
 package deque;
 
 import org.junit.Test;
+
+import java.util.Iterator;
+
 import static org.junit.Assert.*;
 
 
@@ -17,23 +20,32 @@ public class LinkedListDequeTest {
         System.out.println("Make sure to uncomment the lines below (and delete this print statement).");
 
         LinkedListDeque<String> lld1 = new LinkedListDeque<String>();
-
+        LinkedListDeque<String> lld2 = new LinkedListDeque<String>();
 		assertTrue("A newly initialized LLDeque should be empty", lld1.isEmpty());
 		lld1.addFirst("front");
-
+        lld2.addFirst("front");
 		// The && operator is the same as "and" in Python.
 		// It's a binary operator that returns true if both arguments true, and false otherwise.
         assertEquals(1, lld1.size());
         assertFalse("lld1 should now contain 1 item", lld1.isEmpty());
 
 		lld1.addLast("middle");
+        lld2.addLast("middle");
 		assertEquals(2, lld1.size());
 
 		lld1.addLast("back");
+        lld2.addLast("back");
 		assertEquals(3, lld1.size());
 
 		System.out.println("Printing out deque: ");
 		lld1.printDeque();
+        Iterator<String> a = lld1.iterator();
+        while (a.hasNext())
+        {
+            System.out.println(a.next());
+        }
+        System.out.println(lld1.equals(lld2));
+        assertTrue(lld2.equals(lld1));
 
     }
 

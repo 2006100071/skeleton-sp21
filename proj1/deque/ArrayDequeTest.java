@@ -1,6 +1,9 @@
 package deque;
 
 import org.junit.Test;
+
+import java.util.Iterator;
+
 import static org.junit.Assert.*;
 
 public class ArrayDequeTest {
@@ -14,23 +17,32 @@ public class ArrayDequeTest {
         System.out.println("Make sure to uncomment the lines below (and delete this print statement).");
 
         ArrayDeque<String> lld1 = new ArrayDeque<String>();
-
+        ArrayDeque<String> lld2 = new ArrayDeque<String>();
         assertTrue("A newly initialized LLDeque should be empty", lld1.isEmpty());
         lld1.addFirst("front");
-
+        lld2.addFirst("front");
         // The && operator is the same as "and" in Python.
         // It's a binary operator that returns true if both arguments true, and false otherwise.
         assertEquals(1, lld1.size());
         assertFalse("lld1 should now contain 1 item", lld1.isEmpty());
 
         lld1.addLast("middle");
+        lld2.addLast("middle");
         assertEquals(2, lld1.size());
 
         lld1.addLast("back");
+        lld2.addLast("back");
         assertEquals(3, lld1.size());
 
         System.out.println("Printing out deque: ");
         lld1.printDeque();
+        Iterator<String>a = lld1.iterator();
+        while (a.hasNext())
+        {
+            System.out.println(a.next());
+        }
+        System.out.println(lld1.equals(lld2));
+        assertTrue(lld2.equals(lld1));
 
     }
 
@@ -122,7 +134,13 @@ public class ArrayDequeTest {
         for (int i = 0; i < 1000000; i++) {
             lld1.addLast(i);
         }
-
+        Iterator<Integer>a = lld1.iterator();
+        int i1 = 0;
+        while (a.hasNext() && i1 < 100)
+        {
+            System.out.println(a.next());
+            i1++;
+        }
         for (double i = 0; i < 500000; i++) {
             assertEquals("Should have the same value", i, (double) lld1.removeFirst(), 0.0);
         }

@@ -1,5 +1,6 @@
 package deque;
 
+import java.util.Iterator;
 import java.util.concurrent.RecursiveAction;
 
 public class LinkedListDeque<Item>{
@@ -126,6 +127,40 @@ public class LinkedListDeque<Item>{
             return  null;
         IntNode p = sentinel.next;
         return Recursive(index,0,p);
+    }
+
+    public Iterator<Item> iterator()
+    {
+        Iterator<Item> p = new Iterator<Item>() {
+            private int index = 0;
+            @Override
+            public boolean hasNext() {
+                return index < size;
+            }
+
+            @Override
+            public Item next() {
+                Item x = get(index);
+                index++;
+                return x;
+            }
+        };
+        return  p;
+    }
+
+    public boolean equals(Object o)
+    {
+        if (o == null)return  false;
+        if (o == this)return  true;
+        if (!(o instanceof LinkedListDeque)) return  false;
+        LinkedListDeque<Item> p = (LinkedListDeque<Item>)o;
+        if (p.size() != size)return  false;
+
+        for (int i = 0; i < size; i++) {
+            if (p.get(i) != get(i))
+                return  false;
+        }
+        return  true;
     }
 
 }
